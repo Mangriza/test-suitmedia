@@ -17,6 +17,18 @@ function Header() {
   const [activeMenu, setActiveMenu] = useState('ideas');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [fabMenuOpen, setFabMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 700 : false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 700);
+      if (window.innerWidth > 700) setSidebarOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    // Trigger on mount
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -27,15 +39,6 @@ function Header() {
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
-
-  // Close sidebar on resize to desktop
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 700) setSidebarOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const headerVisibility = scrollDirection === 'down' ? styles.hidden : styles.visible;
@@ -59,7 +62,7 @@ function Header() {
           </nav>
         </div>
       </header>
-      {typeof window !== 'undefined' && window.innerWidth <= 700 && (
+      {isMobile && (
         <>
           <button
             className={styles.fab}
