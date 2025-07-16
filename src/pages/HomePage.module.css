@@ -1,0 +1,128 @@
+/* src/pages/HomePage.module.css */
+.homePageContainer {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: transparent;
+}
+  
+  .pageTitle {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .loadingState, .errorState {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  .errorState {
+    color: #d9534f;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: flex-end; /* Posisikan ke kanan */
+    gap: 20px; /* Jarak antar kontrol */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+  }
+  
+  .controlGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .controls label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .controls select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+    min-width: 80px;
+  }
+  
+  .postGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 1000px) {
+    .postGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .postGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination button {
+    padding: 10px 15px;
+    border: 1px solid #FF6600;
+    background-color: white;
+    color: #FF6600;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+    min-width: 40px;
+    min-height: 40px;
+    font-weight: 500;
+    font-size: 1em;
+  }
+  
+  .pagination button:hover:not(:disabled) {
+    background-color: #FF6600;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255,102,0,0.12);
+  }
+  
+  .pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagination .activePage {
+    background-color: #FF6600;
+    color: white;
+    font-weight: bold;
+    border: 1.5px solid #FF6600;
+  }
+  
+  .paginationInfo {
+    margin-left: 20px;
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  /* Responsiveness untuk kontrol pagination */
+  @media (max-width: 768px) {
+    .controls {
+      flex-direction: column; /* Kontrol jadi vertikal */
+      align-items: flex-start;
+    }
+  }

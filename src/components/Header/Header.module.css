@@ -1,0 +1,122 @@
+/* src/components/Header/Header.module.css */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff5b1a;
+  color: white;
+  padding: 0 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header.visible {
+  transform: translateY(0);
+}
+
+.header.transparentBg {
+  background-color: rgba(255, 102, 0, 0.85);
+}
+
+.headerContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: 100%;
+  padding: 0 48px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 64px;
+}
+
+.logo {
+  font-size: 1.7em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 36px;
+}
+
+.navList li {
+  position: relative;
+  font-size: 1.1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navList li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 0;
+  display: block;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.navList li.active a {
+  font-weight: bold;
+}
+
+.navList li.active a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 8px;
+  }
+  .navList {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    padding: 0 4px;
+  }
+  .navList {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    background: #FF6600;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    display: none;
+  }
+  .navList.open {
+    display: flex;
+  }
+} 
