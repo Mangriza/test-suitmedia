@@ -38,6 +38,8 @@ function PostCard({ idea }) {
           alt={idea.title}
           className={styles.cardImage}
           loading="lazy"
+          onError={e => { e.target.onerror = null; e.target.style.display = 'none'; }}
+          style={{position: 'relative', width: '100%', height: 'auto', objectFit: 'cover', background: '#f3f3f3'}}
         />
         <div style={{fontSize:'10px',color:'#aaa',wordBreak:'break-all'}}>{imageUrl}</div>
       </div>

@@ -19,7 +19,7 @@
 
 .imageWrapper {
   width: 100%;
-  padding-bottom: 75%;
+  padding-bottom: 75%; /* 4:3 ratio */
   position: relative;
   overflow: hidden;
 }
@@ -31,6 +31,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  opacity: 1;
+  background: #f3f3f3;
 }
 
 .cardContent {
@@ -58,4 +61,27 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    padding: 0;
+  }
+  .imageWrapper {
+    width: 100%;
+    padding-bottom: 75%;
+  }
+  .cardContent {
+    padding: 12px 8px 10px 8px;
+  }
+  .cardTitle {
+    font-size: 1em;
+  }
+  .publishedDate {
+    font-size: 0.85em;
+  }
 }

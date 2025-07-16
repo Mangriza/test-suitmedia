@@ -135,22 +135,26 @@ function HomePage() {
     <div className={styles.homePageContainer}>
       <h1 className={styles.pageTitle}>Our Latest Ideas</h1>
 
-      <div className={styles.controls}>
-        <div className={styles.controlGroup}>
-          <label htmlFor="sortBy">Sort By:</label>
-          <select id="sortBy" value={sortBy} onChange={handleSortChange}>
-            <option value="-published_at">Terbaru</option>
-            <option value="published_at">Terlama</option>
-          </select>
-        </div>
-
-        <div className={styles.controlGroup}>
-          <label htmlFor="itemsPerPage">Show:</label>
-          <select id="itemsPerPage" value={itemsPerPage} onChange={handleItemsPerPageChange}>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </select>
+      <div className={styles.controlsRow}>
+        <span className={styles.paginationInfo}>
+          Showing {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
+        </span>
+        <div className={styles.controls}>
+          <div className={styles.controlGroup}>
+            <label htmlFor="sortBy">Sort By:</label>
+            <select id="sortBy" value={sortBy} onChange={handleSortChange}>
+              <option value="-published_at">Terbaru</option>
+              <option value="published_at">Terlama</option>
+            </select>
+          </div>
+          <div className={styles.controlGroup}>
+            <label htmlFor="itemsPerPage">Show:</label>
+            <select id="itemsPerPage" value={itemsPerPage} onChange={handleItemsPerPageChange}>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -178,9 +182,6 @@ function HomePage() {
         >
           Next
         </button>
-        <span className={styles.paginationInfo}>
-          Showing {((currentPage - 1) * itemsPerPage) + 1} - {Math.min(currentPage * itemsPerPage, totalItems)} of {totalItems}
-        </span>
       </div>
     </div>
   );

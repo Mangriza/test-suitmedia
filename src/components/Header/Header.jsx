@@ -15,6 +15,8 @@ const menuItems = [
 function Header() {
   const scrollDirection = useScrollDirection();
   const [activeMenu, setActiveMenu] = useState('ideas');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [fabMenuOpen, setFabMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -27,27 +29,64 @@ function Header() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Close sidebar on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 700) setSidebarOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const headerVisibility = scrollDirection === 'down' ? styles.hidden : styles.visible;
   const headerBg = scrollDirection === 'up' ? styles.transparentBg : '';
 
   return (
-    <header className={`${styles.header} ${headerVisibility} ${headerBg}`}>
-      <div className={styles.headerContainer}>
-        <div className={styles.logo}>
-          <img src="/vite.svg" alt="logo" style={{height:32, marginRight:10, verticalAlign:'middle'}} />
-          suit<span style={{color:'#fff'}}>media</span>
+    <>
+      <header className={`${styles.header} ${headerVisibility} ${headerBg}`}>
+        <div className={styles.headerContainer}>
+          <div className={styles.logo}>
+            <img src="/logo-suitmedia.png" alt="logo" style={{height:120, marginRight:0, verticalAlign:'middle', display:'block'}} />
+          </div>
+          <nav>
+            <ul className={styles.navList}>
+              {menuItems.map(item => (
+                <li key={item.key} className={activeMenu === item.key ? styles.active : ''}>
+                  <a href={item.href} onClick={() => setActiveMenu(item.key)}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-        <nav>
-          <ul className={styles.navList}>
-            {menuItems.map(item => (
-              <li key={item.key} className={activeMenu === item.key ? styles.active : ''}>
-                <a href={item.href} onClick={() => setActiveMenu(item.key)}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </header>
+      </header>
+      {typeof window !== 'undefined' && window.innerWidth <= 700 && (
+        <>
+          <button
+            className={styles.fab}
+            aria-label="Main Action"
+            onClick={() => setFabMenuOpen(open => !open)}
+          >
+            <span className={styles.fabIcon}>☰</span>
+          </button>
+          {fabMenuOpen && (
+            <div className={styles.fabMenu}>
+              <ul>
+                {menuItems.map(item => (
+                  <li key={item.key}>
+                    <a
+                      href={item.href}
+                      onClick={() => { setFabMenuOpen(false); setActiveMenu(item.key); }}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </>
+      )}
+    </>
   );
 }
 

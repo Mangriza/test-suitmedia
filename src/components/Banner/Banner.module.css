@@ -1,32 +1,19 @@
 /* src/components/Banner/Banner.module.css */
-.bannerContainer {
+.banner {
   position: relative;
-  width: 100%;
-  height: 340px;
-  overflow: hidden;
-  margin-top: 64px;
-}
-
-.bannerImage {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 320px; /* Atur sesuai kebutuhan */
   background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transition: transform 0.3s;
-}
-
-.bannerOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(120deg, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.15) 100%);
-  z-index: 2;
+  background-repeat: no-repeat;
+  background-position: 40% 0;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  transition: background-position 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .bannerContent {
@@ -34,11 +21,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 3;
-  color: #fff;
+  color: white;
   text-align: center;
-  width: 90vw;
-  max-width: 1200px;
+  z-index: 2;
 }
 
 .bannerTitle {
@@ -64,5 +49,30 @@
   }
   .bannerDescription {
     font-size: 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .bannerContainer {
+    height: 320px;
+    margin-top: 0;
+    padding: 0;
+    padding-top: 70px;
+  }
+  .bannerImage, .bannerOverlay {
+    width: 100%;
+  }
+  .bannerTitle {
+    font-size: 1.1em;
+  }
+  .bannerDescription {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 601px) {
+  .bannerContainer {
+    height: 380px;
+    padding-top: 70px;
   }
 }

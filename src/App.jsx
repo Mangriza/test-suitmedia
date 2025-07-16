@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main style={{ paddingTop: '70px' }}>
+      <main>
         <Banner imageUrl={bannerImageUrl} title={bannerTitle} description={bannerDescription} />
         <HomePage />
       </main>

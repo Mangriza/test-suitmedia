@@ -71,6 +71,12 @@
       grid-template-columns: 1fr;
     }
   }
+  @media (max-width: 600px) {
+    .pageTitle {
+      font-size: 1.3em;
+      margin-bottom: 18px;
+    }
+  }
   
   .pagination {
     display: flex;
@@ -113,12 +119,6 @@
     border: 1.5px solid #FF6600;
   }
   
-  .paginationInfo {
-    margin-left: 20px;
-    font-size: 0.9em;
-    color: #666;
-  }
-  
   /* Responsiveness untuk kontrol pagination */
   @media (max-width: 768px) {
     .controls {
@@ -126,3 +126,21 @@
       align-items: flex-start;
     }
   }
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+@media (max-width: 700px) {
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .controls {
+    justify-content: flex-start;
+  }
+}
