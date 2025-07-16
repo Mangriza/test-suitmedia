@@ -3,6 +3,7 @@
 Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedia, lengkap dengan fitur pagination, sorting, dan tampilan responsif. Dibuat sebagai bagian dari technical test Suitmedia.
 
 ---
+# Link Deployment : https://suitmedia-test-mrizabuccharelli.vercel.app/
 
 ## Fitur Utama
 
