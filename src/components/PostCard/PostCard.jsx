@@ -1,8 +1,10 @@
 // src/components/PostCard/PostCard.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PostCard.module.css';
 
 function PostCard({ idea }) {
+  const navigate = useNavigate();
   // Fungsi untuk membatasi judul maksimal 3 baris dan menambahkan ellipsis
   const truncateTitle = (title, maxLines = 3) => {
     // Estimasi tinggi baris, bisa disesuaikan dengan line-height CSS
@@ -30,7 +32,7 @@ function PostCard({ idea }) {
   console.log('PostCard imageUrl:', imageUrl, idea);
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => navigate(`/detail/${idea.id}`)} style={{cursor:'pointer'}}>
       <div className={styles.imageWrapper}>
         {/* Lazy loading image */}
         <img
@@ -45,7 +47,7 @@ function PostCard({ idea }) {
       </div>
       <div className={styles.cardContent}>
         <p className={styles.publishedDate}>{formattedDate}</p>
-        <h3 className={styles.cardTitle}>{truncateTitle(idea.title)}</h3> {/* Judul dengan ellipsis */}
+        <h3 className={styles.cardTitle}>{idea.title}</h3>
       </div>
     </div>
   );
