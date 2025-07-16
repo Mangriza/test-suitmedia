@@ -3,15 +3,9 @@
 Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedia, lengkap dengan fitur pagination, sorting, dan tampilan responsif. Dibuat sebagai bagian dari technical test Suitmedia.
 
 ---
+# Link Deployment : https://suitmedia-test-mrizabuccharelli.vercel.app/
 
 ## Fitur Utama
-
-- **Daftar Ide (HomePage):**
-  - Menampilkan list ide dari API Suitmedia.
-  - Pagination: atur jumlah item per halaman (10, 20, 50).
-  - Sorting: urutkan berdasarkan tanggal terbaru/terlama.
-  - Setiap ide ditampilkan dalam bentuk card (PostCard) dengan gambar, tanggal, dan judul.
-  - Gambar otomatis fallback ke placeholder jika gagal load.
 
 - **Detail Ide (DetailPage):**
   - Menampilkan detail lengkap ide yang dipilih.
@@ -39,7 +33,7 @@ Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedi
 suitmedia-test-frontend/
 ├── public/
 │   ├── logo-suitmedia.png
-│   ├── no-image.png         # (tambahkan sendiri untuk placeholder gambar)
+│   ├── no-image.png   
 ├── src/
 │   ├── components/
 │   │   ├── Banner/
@@ -63,7 +57,7 @@ suitmedia-test-frontend/
 
 1. **Clone repo & install dependencies**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/Mangriza/test-suitmedia.git
    cd suitmedia-test-frontend
    npm install
    ```
@@ -93,11 +87,7 @@ Sehingga bebas CORS/CORB saat development.
 ## Catatan Teknis
 
 - **Gambar dari API**:  
-  Jika gambar gagal load (karena CORS/403), otomatis fallback ke `/no-image.png`.
-- **API detail**:  
-  Jangan akses endpoint API langsung dari browser, gunakan aplikasi (fetch dari React).
-- **React DevTools**:  
-  Disarankan install [React DevTools](https://react.dev/link/react-devtools) untuk debugging.
+  Jika gambar gagal load (karena CORS/403)
 
 ---
 
@@ -113,9 +103,4 @@ Sehingga bebas CORS/CORB saat development.
 ## Author
 
 - Suitmedia Technical Test
-- Frontend by AI Assistant (https://openai.com/)
 
----
-
-> **Note:**  
-> Jika ada error gambar tidak muncul, pastikan sudah menambahkan `no-image.png` di folder `public/`.
