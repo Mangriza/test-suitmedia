@@ -6,13 +6,6 @@ Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedi
 
 ## Fitur Utama
 
-- **Daftar Ide (HomePage):**
-  - Menampilkan list ide dari API Suitmedia.
-  - Pagination: atur jumlah item per halaman (10, 20, 50).
-  - Sorting: urutkan berdasarkan tanggal terbaru/terlama.
-  - Setiap ide ditampilkan dalam bentuk card (PostCard) dengan gambar, tanggal, dan judul.
-  - Gambar otomatis fallback ke placeholder jika gagal load.
-
 - **Detail Ide (DetailPage):**
   - Menampilkan detail lengkap ide yang dipilih.
   - Gambar utama, judul, tanggal, dan isi konten ide.
@@ -113,9 +106,4 @@ Sehingga bebas CORS/CORB saat development.
 ## Author
 
 - Suitmedia Technical Test
-- Frontend by AI Assistant (https://openai.com/)
 
----
-
-> **Note:**  
-> Jika ada error gambar tidak muncul, pastikan sudah menambahkan `no-image.png` di folder `public/`.
