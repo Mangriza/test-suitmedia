@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import useScrollDirection from '../../hooks/useScrollDirection';
+import { useNavigate, Link } from 'react-router-dom';
 
 const menuItems = [
   { key: 'work', label: 'Work', href: '#work' },
@@ -18,6 +19,7 @@ function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [fabMenuOpen, setFabMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 700 : false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,7 +57,11 @@ function Header() {
             <ul className={styles.navList}>
               {menuItems.map(item => (
                 <li key={item.key} className={activeMenu === item.key ? styles.active : ''}>
-                  <a href={item.href} onClick={() => setActiveMenu(item.key)}>{item.label}</a>
+                  {item.key === 'ideas' ? (
+                    <Link to="/" onClick={() => setActiveMenu(item.key)}>{item.label}</Link>
+                  ) : (
+                    <a href={item.href} onClick={() => setActiveMenu(item.key)}>{item.label}</a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -76,12 +82,21 @@ function Header() {
               <ul>
                 {menuItems.map(item => (
                   <li key={item.key}>
-                    <a
-                      href={item.href}
-                      onClick={() => { setFabMenuOpen(false); setActiveMenu(item.key); }}
-                    >
-                      {item.label}
-                    </a>
+                    {item.key === 'ideas' ? (
+                      <Link
+                        to="/"
+                        onClick={() => { setFabMenuOpen(false); setActiveMenu(item.key); }}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        onClick={() => { setFabMenuOpen(false); setActiveMenu(item.key); }}
+                      >
+                        {item.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
