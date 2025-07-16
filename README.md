@@ -1,12 +1,121 @@
-# React + Vite
+# Suitmedia Test Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedia, lengkap dengan fitur pagination, sorting, dan tampilan responsif. Dibuat sebagai bagian dari technical test Suitmedia.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fitur Utama
 
-## Expanding the ESLint configuration
+- **Daftar Ide (HomePage):**
+  - Menampilkan list ide dari API Suitmedia.
+  - Pagination: atur jumlah item per halaman (10, 20, 50).
+  - Sorting: urutkan berdasarkan tanggal terbaru/terlama.
+  - Setiap ide ditampilkan dalam bentuk card (PostCard) dengan gambar, tanggal, dan judul.
+  - Gambar otomatis fallback ke placeholder jika gagal load.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Detail Ide (DetailPage):**
+  - Menampilkan detail lengkap ide yang dipilih.
+  - Gambar utama, judul, tanggal, dan isi konten ide.
+  - Penanganan error jika data tidak ditemukan.
+
+- **Komponen Reusable:**
+  - **Header:** Navigasi utama dengan logo Suitmedia.
+  - **Banner:** Banner dinamis di halaman utama.
+  - **PostCard:** Card responsif untuk setiap ide.
+
+- **UX & Responsif:**
+  - Desain modern, responsif di berbagai ukuran layar.
+  - Loading state & error handling user-friendly.
+  - Scroll-aware header (menghilang saat scroll ke bawah).
+
+- **Proxy API & Gambar:**
+  - Proxy untuk API dan gambar agar bebas CORS/CORB saat development lokal.
+
+---
+
+## Struktur Project
+
+```
+suitmedia-test-frontend/
+├── public/
+│   ├── logo-suitmedia.png
+│   ├── no-image.png         # (tambahkan sendiri untuk placeholder gambar)
+├── src/
+│   ├── components/
+│   │   ├── Banner/
+│   │   ├── Header/
+│   │   └── PostCard/
+│   ├── hooks/
+│   ├── pages/
+│   │   ├── HomePages.jsx
+│   │   └── DetailPage.jsx
+│   ├── utils/
+│   ├── App.jsx
+│   └── main.jsx
+├── vite.config.js
+├── package.json
+└── README.md
+```
+
+---
+
+## Instalasi & Menjalankan
+
+1. **Clone repo & install dependencies**
+   ```bash
+   git clone <repo-url>
+   cd suitmedia-test-frontend
+   npm install
+   ```
+
+2. **Tambahkan gambar placeholder**
+   - Download gambar dari https://placehold.co/400x300?text=No+Image
+   - Simpan sebagai `public/no-image.png`
+
+3. **Jalankan aplikasi**
+   ```bash
+   npm run dev
+   ```
+   Akses di [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Konfigurasi Proxy (Vite)
+
+Sudah otomatis di-setup di `vite.config.js`:
+- `/api` → `https://suitmedia-backend.suitdev.com`
+- `/image-proxy` → `https://assets.suitdev.com`
+
+Sehingga bebas CORS/CORB saat development.
+
+---
+
+## Catatan Teknis
+
+- **Gambar dari API**:  
+  Jika gambar gagal load (karena CORS/403), otomatis fallback ke `/no-image.png`.
+- **API detail**:  
+  Jangan akses endpoint API langsung dari browser, gunakan aplikasi (fetch dari React).
+- **React DevTools**:  
+  Disarankan install [React DevTools](https://react.dev/link/react-devtools) untuk debugging.
+
+---
+
+## Stack & Tools
+
+- React 19, React Router 7
+- Vite
+- Axios
+- CSS Modules
+
+---
+
+## Author
+
+- Suitmedia Technical Test
+- Frontend by AI Assistant (https://openai.com/)
+
+---
+
+> **Note:**  
+> Jika ada error gambar tidak muncul, pastikan sudah menambahkan `no-image.png` di folder `public/`.

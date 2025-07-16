@@ -7,9 +7,14 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://suitmedia-backend.suitdev.com/api',
+        target: 'https://suitmedia-backend.suitdev.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: path => path.replace(/^\/api/, '/api'),
+      },
+      '/image-proxy': {
+        target: 'https://assets.suitdev.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/image-proxy/, ''),
       },
     },
   },

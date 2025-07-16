@@ -5,6 +5,7 @@ import styles from './PostCard.module.css';
 
 function PostCard({ idea }) {
   const navigate = useNavigate();
+  const [imgError, setImgError] = React.useState(false);
   // Fungsi untuk membatasi judul maksimal 3 baris dan menambahkan ellipsis
   const truncateTitle = (title, maxLines = 3) => {
     // Estimasi tinggi baris, bisa disesuaikan dengan line-height CSS
@@ -26,24 +27,28 @@ function PostCard({ idea }) {
   });
 
   // Pilih gambar terbaik yang tersedia, prioritaskan medium_image
-  const imageUrl = (Array.isArray(idea.medium_image) && idea.medium_image[0] && idea.medium_image[0].url)
+  let imageUrl = (Array.isArray(idea.medium_image) && idea.medium_image[0] && idea.medium_image[0].url)
     || (Array.isArray(idea.small_image) && idea.small_image[0] && idea.small_image[0].url)
-    || 'https://via.placeholder.com/400x300?text=No+Image';
-  console.log('PostCard imageUrl:', imageUrl, idea);
+    || 'https://placehold.co/400x300?text=No+Image';
+  if (imageUrl.startsWith('https://assets.suitdev.com')) {
+    imageUrl = imageUrl.replace('https://assets.suitdev.com', '/image-proxy');
+  }
 
   return (
     <div className={styles.card} onClick={() => navigate(`/detail/${idea.id}`)} style={{cursor:'pointer'}}>
       <div className={styles.imageWrapper}>
-        {/* Lazy loading image */}
-        <img
-          src={imageUrl}
-          alt={idea.title}
-          className={styles.cardImage}
-          loading="lazy"
-          onError={e => { e.target.onerror = null; e.target.style.display = 'none'; }}
-          style={{position: 'relative', width: '100%', height: 'auto', objectFit: 'cover', background: '#f3f3f3'}}
-        />
-        <div style={{fontSize:'10px',color:'#aaa',wordBreak:'break-all'}}>{imageUrl}</div>
+        {imgError ? (
+          <div style={{fontSize:'10px',color:'#aaa',wordBreak:'break-all',textAlign:'center',padding:'8px'}}>{imageUrl}</div>
+        ) : (
+          <img
+            src={imageUrl}
+            alt={idea.title}
+            className={styles.cardImage}
+            loading="lazy"
+            onError={() => setImgError(true)}
+            style={{position: 'relative', width: '100%', height: 'auto', objectFit: 'cover', background: '#f3f3f3'}}
+          />
+        )}
       </div>
       <div className={styles.cardContent}>
         <p className={styles.publishedDate}>{formattedDate}</p>

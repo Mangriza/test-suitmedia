@@ -28,9 +28,12 @@ function DetailPage() {
   if (error) return <div style={{padding:32, color:'red'}}>{error}</div>;
   if (!idea) return <div style={{padding:32}}>Data tidak ditemukan.</div>;
 
-  const imageUrl = (Array.isArray(idea.medium_image) && idea.medium_image[0] && idea.medium_image[0].url)
+  let imageUrl = (Array.isArray(idea.medium_image) && idea.medium_image[0] && idea.medium_image[0].url)
     || (Array.isArray(idea.small_image) && idea.small_image[0] && idea.small_image[0].url)
-    || 'https://via.placeholder.com/800x600?text=No+Image';
+    || 'https://placehold.co/800x600?text=No+Image';
+  if (imageUrl.startsWith('https://assets.suitdev.com')) {
+    imageUrl = imageUrl.replace('https://assets.suitdev.com', '/image-proxy');
+  }
 
   return (
     <div style={{maxWidth:800, margin:'40px auto', padding:'0 16px'}}>
