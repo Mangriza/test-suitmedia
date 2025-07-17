@@ -32,7 +32,7 @@ Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedi
 
 > Beberapa gambar dari API tidak muncul karena server gambar (assets.suitdev.com) memblokir akses dari domain deploy (403 Forbidden).
 > Jika gambar gagal di-load, otomatis akan tampil placeholder agar UI tetap rapi.
-> Jika domain deploy sudah diizinkan oleh server gambar, gambar akan tampil normal tanpa perlu ubah kode.
+> Jika domain deploy sudah diizinkan oleh server gambar, gambar akan tampil.
 -----------------------
 ## Struktur Project
 
