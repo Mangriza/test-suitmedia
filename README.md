@@ -26,7 +26,7 @@ Aplikasi web React untuk menampilkan daftar ide dan detail ide dari API Suitmedi
   - Proxy untuk API dan gambar agar bebas CORS/CORB saat development lokal.
 
 -----------------------
-# Masalah / tantangan yg ada
+## Catatan Teknis
 
 <img width="1919" height="1015" alt="image" src="https://github.com/user-attachments/assets/49d2615e-90e7-4a0f-ab78-5d0fd8b2c3bb" />
 
@@ -91,12 +91,7 @@ Sehingga bebas CORS/CORB saat development.
 
 ---
 
-## Catatan Teknis
 
-- **Gambar dari API**:  
-  Jika gambar gagal load (karena CORS/403)
-
----
 
 ## Stack & Tools
 
