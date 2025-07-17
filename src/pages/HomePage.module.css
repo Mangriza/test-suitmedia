@@ -71,6 +71,15 @@
       grid-template-columns: 1fr;
     }
   }
+  @media (min-width: 700px) and (max-width: 1000px) {
+    .postGrid {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
   @media (max-width: 600px) {
     .pageTitle {
       font-size: 1.3em;
