@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './PostCard.module.css';
 
-function PostCard({ idea }) {
+function PostCard({ idea, onClick }) {
   const navigate = useNavigate();
   const [imgError, setImgError] = React.useState(false);
   const truncateTitle = (title, maxLines = 3) => {
@@ -24,7 +24,7 @@ function PostCard({ idea }) {
     || `https://picsum.photos/seed/${idea.id}/400/300`;
 
   return (
-    <div className={styles.card} onClick={() => navigate(`/detail/${idea.id}`)} style={{cursor:'pointer'}}>
+    <div className={styles.card} onClick={onClick} style={{cursor:'pointer'}}>
       <div className={styles.imageWrapper}>
         {imgError ? (
           <img

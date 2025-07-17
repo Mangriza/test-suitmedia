@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import PostCard from '../components/PostCard/PostCard';
+import PostModal from '../components/PostCard/PostModal';
 import styles from './HomePage.module.css';
 
 function HomePage() {
@@ -12,6 +13,15 @@ function HomePage() {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [sortBy, setSortBy] = useState('-published_at');
   const [totalItems, setTotalItems] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedIdea, setSelectedIdea] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchIdeas = useCallback(async () => {
     setLoading(true);
@@ -90,6 +100,11 @@ function HomePage() {
     </>
   );
 
+  // Tentukan jumlah kolom aktif
+  let columns = 4;
+  if (windowWidth <= 1000 && windowWidth > 600) columns = 2;
+  if (windowWidth <= 600) columns = 1;
+
   if (loading) return <div className={styles.loadingState}>Loading ideas...</div>;
   if (error) return <div className={styles.errorState}>Error: {error}</div>;
 
@@ -120,9 +135,9 @@ function HomePage() {
       </div>
       <div className={styles.postGrid}>
         {ideas.map(idea => (
-          <PostCard key={idea.id} idea={idea} />
+          <PostCard key={idea.id} idea={idea} onClick={() => { setSelectedIdea(idea); setModalOpen(true); }} />
         ))}
-        {Array.from({ length: (4 - (ideas.length % 4)) % 4 }).map((_, idx) => (
+        {columns > 1 && Array.from({ length: (columns - (ideas.length % columns)) % columns }).map((_, idx) => (
           <div key={`dummy-${idx}`} className={`${styles.card} dummy`} style={{visibility:'hidden'}} />
         ))}
       </div>
@@ -141,6 +156,9 @@ function HomePage() {
           Next
         </button>
       </div>
+      {modalOpen && selectedIdea && (
+        <PostModal idea={selectedIdea} onClose={() => setModalOpen(false)} />
+      )}
     </div>
   );
 }
