@@ -21,15 +21,15 @@ function PostCard({ idea }) {
 
   let imageUrl = (Array.isArray(idea.medium_image) && idea.medium_image[0] && idea.medium_image[0].url)
     || (Array.isArray(idea.small_image) && idea.small_image[0] && idea.small_image[0].url)
-    || 'https://placehold.co/400x300?text=No+Image';
+    || `https://picsum.photos/seed/${idea.id}/400/300`;
 
   return (
     <div className={styles.card} onClick={() => navigate(`/detail/${idea.id}`)} style={{cursor:'pointer'}}>
       <div className={styles.imageWrapper}>
         {imgError ? (
           <img
-            src="https://placehold.co/400x300?text=No+Image"
-            alt="No Image"
+            src={`https://picsum.photos/seed/fallback${idea.id}/400/300`}
+            alt="Dummy"
             className={styles.cardImage}
             style={{position: 'relative', width: '100%', height: 'auto', objectFit: 'cover', background: '#f3f3f3'}}
           />

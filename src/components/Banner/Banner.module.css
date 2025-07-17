@@ -40,6 +40,25 @@
   text-shadow: 1px 1px 4px rgba(0,0,0,0.18);
 }
 
+.bannerImageWrapper {
+  width: 100%;
+  aspect-ratio: 16/9;
+  max-height: 480px;
+  overflow: hidden;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #e0e0e0;
+}
+
 @media (max-width: 1000px) {
   .bannerContainer {
     height: 220px;
@@ -74,5 +93,15 @@
   .bannerContainer {
     height: 380px;
     padding-top: 70px;
+  }
+}
+
+@media (max-width: 700px) {
+  .bannerImage {
+    object-fit: cover;
+  }
+  .bannerImageWrapper {
+    aspect-ratio: 16/8;
+    max-height: 260px;
   }
 }
