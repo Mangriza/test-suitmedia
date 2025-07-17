@@ -4,7 +4,7 @@
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
-  height: 320px; /* Atur sesuai kebutuhan */
+  height: 320px; 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 40% 0;

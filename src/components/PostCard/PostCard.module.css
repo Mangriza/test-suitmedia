@@ -1,13 +1,15 @@
 /* src/components/PostCard/PostCard.module.css */
 .card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  width: 100%;
+  max-width: 300px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   overflow: hidden;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  transition: transform 0.18s, box-shadow 0.18s, border 0.18s;
-  border: 1.5px solid #f3f3f3;
+  min-height: 320px;
+  max-height: 370px;
 }
 
 .card:hover {
@@ -18,48 +20,46 @@
 
 .imageWrapper {
   width: 100%;
-  padding-bottom: 60%; /* lebih kotak, card lebih pendek */
-  position: relative;
+  height: 180px;
   overflow: hidden;
+  background: #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .cardImage {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 1;
-  background: #f3f3f3;
 }
 
 .cardContent {
-  padding: 18px 16px 16px 16px;
+  padding: 16px 12px 20px 12px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .publishedDate {
-  font-size: 0.9em;
-  color: #888;
+  font-size: 12px;
+  color: #aaa;
   margin-bottom: 8px;
-  font-weight: 500;
 }
 
 .cardTitle {
-  font-size: 1.13em;
-  font-weight: bold;
-  color: #232323;
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
   margin: 0;
-  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 60px;
 }
 
 @media (max-width: 600px) {

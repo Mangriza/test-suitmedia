@@ -13,15 +13,14 @@ function useScrollDirection() {
       } else if (scrollY < lastScrollY) {
         setScrollDirection('up');
       }
-      setLastScrollY(scrollY); // Update posisi scroll terakhir
+      setLastScrollY(scrollY); 
     };
 
-    window.addEventListener('scroll', updateScrollDirection); // Tambahkan event listener
-    // Cleanup function: hapus event listener saat komponen unmount
+    window.addEventListener('scroll', updateScrollDirection); 
     return () => {
       window.removeEventListener('scroll', updateScrollDirection);
     };
-  }, [lastScrollY]); // Dependensi: hanya re-run jika lastScrollY berubah
+  }, [lastScrollY]); 
 
   return scrollDirection;
 }
